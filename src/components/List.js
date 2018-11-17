@@ -1,13 +1,24 @@
 import React from 'react';
 import Item from './Item';
 
-const List = ({ toDoItems }) => {
-   const itemComponents = toDoItems.map((item, i) => {
-      return <Item key={i} id={toDoItems[i].id} name={toDoItems[i].name} done={toDoItems[i].done}/>
-   })
+const List = ({ list }) => {
    return (
-      <div>{itemComponents}</div>
-   )
+      <div>
+         {
+            list.map((item, i) => {
+               return (
+                  <Item 
+                     key = {i}
+                     userId = {list[i].userId}
+                     id = {list[i].id}
+                     title = {list[i].title}
+                     completed = {list[i].completed}
+                  />
+               );
+            })
+         }
+      </div>
+   );
 }
 
 export default List;

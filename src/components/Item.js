@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Item = (props) => {
-   const { id, name, done } = props;
-   return (
-      <div>
-         <input id={id} type="checkbox" name='item'/>
-         <label htmlFor="item">{name}</label>
+   const { userId, id, title, completed } = props;
+   return(
+      <div> 
+         <li>{title}
          <button>x</button>
+         </li>
       </div>
    )
 }

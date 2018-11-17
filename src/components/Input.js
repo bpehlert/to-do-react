@@ -1,13 +1,12 @@
 import React from 'react';
 
 const Input = () => {
-   return(
+   return (
       <div>
-         <input type="text" name="todo" />
-         <input type="submit" value="Add" />
+         <input id="newInput" type="text" name="" placeholder="New item"/>
+         <button id="addBtn" type="button" name="button">Add</button>
       </div>
-      
-   );
+   )
 }
-   
+
 export default Input;

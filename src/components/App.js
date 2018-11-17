@@ -1,19 +1,37 @@
-// Setting up components and ReactRouter
-import React from 'react';
+import React, { Component } from 'react';
 import Input from './Input';
 import List from './List';
-import { toDoItems } from '../toDoItems';
 
-const App = () => {
-   return (
-      <div>
-         <h1>To Do List</h1>
-         <Input />
+class App extends Component {
+   constructor(){
+      super()
+      this.state = {
+         user: '',
+         input: '',
+         list: []
+      }  
+   }
+
+   async componentDidMount() {
+      try {
+         const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+         const json = await res.json();
+         this.setState({ list: json });
+      } catch (error) {
+         console.log(error);
+      }
+   }
+
+   render() {
+      return(
          <div>
-         <List toDoItems = { toDoItems } />
+            {console.log(this.state.list)}
+            <h1>To Do List</h1>
+            <Input />
+            <List list={this.state.list} />
          </div>
-      </div>
-   )
+      )
+   }
 };
 
 export default App;
