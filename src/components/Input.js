@@ -1,10 +1,21 @@
 import React from 'react';
 
-const Input = () => {
+const Input = ({userInput, onChange, onClick, onKeyPress}) => {
    return (
       <div>
-         <input id="newInput" type="text" name="" placeholder="New item"/>
-         <button id="addBtn" type="button" name="button">Add</button>
+         <input 
+            id="newInput" 
+            onChange={onChange}
+            onKeyPress={onKeyPress}
+            value={userInput}
+            placeholder="New item"
+         />
+         <button 
+            id="addBtn"
+            type="button" 
+            onClick={onClick}
+         >Add
+         </button>
       </div>
    )
 }

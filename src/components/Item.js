@@ -1,14 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
+import './main.css';
 
-const Item = (props) => {
-   const { userId, id, title, completed } = props;
-   return(
-      <div> 
-         <li>{title}
-         <button>x</button>
-         </li>
-      </div>
-   )
+class Item extends Component {
+   constructor(props){
+      super(props)
+      this.state = {
+         
+      }  
+   }
+
+render(props){
+   const { userId, id, title, completed, onDelete, toggleDone } = props;
+   const doneClass = completed ? 'done' : '';
+   let deleteBtnClass = 'deleteBtn toggleBtn'
+      return(
+         <div className='container'>
+            <button
+               className={deleteBtnClass}
+               onClick={onDelete}
+            >x</button>
+            <li 
+               onClick={toggleDone} 
+               className={doneClass}
+               onMouseEnter={(e)=> console.log(e)}
+               onMouseLeave={(e)=> console.log(e)}
+            >{title}</li>
+         </div>
+      )
+   }
 }
 
 export default Item;
