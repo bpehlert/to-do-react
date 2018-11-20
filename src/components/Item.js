@@ -4,7 +4,7 @@ import './main.css';
 const Item = (props) => {
    const { userId, id, title, completed, onDelete, toggleDone } = props;
    const doneClass = completed ? 'done' : '';
-   let deleteBtnClass = 'deleteBtn toggleBtn'
+   let deleteBtnClass = 'deleteBtn'
    return(
       <div className='container'>
           <button

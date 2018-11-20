@@ -1,18 +1,20 @@
 import React from 'react';
 import Item from './Item';
 
-const List = ({ list, onDelete, toggleDone }) => {
+const List = ({ list, onDelete, toggleDone, currentUser }) => {
+   const currentUserArr = list.filter((item) => item.userId == currentUser);
+   
    return (
       <div>
          {
-            list.map((item, i) => {
+            currentUserArr.map((item, i) => {
                return (
                   <Item 
                      key = {i}
-                     userId = {list[i].userId}
-                     id = {list[i].id}
-                     title = {list[i].title}
-                     completed = {list[i].completed}
+                     userId = {currentUserArr[i].userId}
+                     id = {currentUserArr[i].id}
+                     title = {currentUserArr[i].title}
+                     completed = {currentUserArr[i].completed}
                      onDelete = {onDelete.bind(this, i)}
                      toggleDone ={toggleDone.bind(this, i)}
                   />

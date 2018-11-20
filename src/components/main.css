@@ -16,6 +16,11 @@ input:focus{
    background-color: #F2F1EF;
 }
 
+.user{
+   float: right;
+   margin-right: 10px;
+}
+
 #addBtn{
    background-color: #22A7F0;
    border: none;

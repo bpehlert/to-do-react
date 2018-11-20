@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './main.css';
 import Input from './Input';
 import List from './List';
+import User from './User';
 
 
 class App extends Component {
    constructor(){
       super()
       this.state = {
-         user: '',
+         currentUser: 1,
          userInput: '',
          list: []
       }  
@@ -62,10 +63,20 @@ class App extends Component {
       this.setState({list: newList})
    };
 
+   selectUser = (event) => {
+      const newUser = parseInt(event.target.value);
+      this.setState({currentUser: newUser});      
+   };
+
    render() {
       return(
          <div>
             <header>
+               <User 
+                  list={this.state.list}
+                  currentUser={this.state.currentUser}
+                  selectUser={this.selectUser}
+               />
                <h1>To Do List</h1>
                <Input 
                   userInput={this.state.userInput}
@@ -78,6 +89,7 @@ class App extends Component {
                list={this.state.list} 
                onDelete={this.onDelete}
                toggleDone={this.toggleDone}
+               currentUser={this.state.currentUser}
             />
          </div>
       )
