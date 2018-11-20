@@ -11,25 +11,26 @@ class App extends Component {
       this.state = {
          currentUser: 1,
          userInput: '',
+         json: [],
          list: []
       }  
    }
 
-   async componentDidMount() {
+   async componentDidMount() {      
       try {
          const res = await fetch('https://jsonplaceholder.typicode.com/todos');
          const json = await res.json();
-         this.setState({ list: json });
+         this.setState({ json: json, list: json });
       } catch (error) {
          console.log(error);
-      }
+      };
    }
 
    onChange = (event) => {
       this.setState({userInput: event.target.value});
    };
 
-   onClick = () => {
+   onAddBtn = () => {
       this.addItem();
    }
 
@@ -51,7 +52,17 @@ class App extends Component {
       this.setState({list: listArray, userInput: ''});
    };
 
-   onDelete = (index) => {
+   onClick = (e) => {
+      const type = e.target;
+      console.log(type);
+      
+      if (type.tagName === "LI") this.toggleDone(type.id);
+      if (type.tagName === "BUTTON") this.deleteItem(type.id);
+   }
+
+   deleteItem = (index) => { 
+      console.log(index, this.state.list);
+        
       const newList = [].concat(this.state.list)
       newList.splice(index, 1);
       this.setState({list: newList})
@@ -64,32 +75,38 @@ class App extends Component {
    };
 
    selectUser = (event) => {
+
       const newUser = parseInt(event.target.value);
-      this.setState({currentUser: newUser});      
+      const filteredList = this.state.json.filter((item) => item.userId === newUser);
+      
+      this.setState({currentUser: newUser, list: filteredList});
+      
+      
    };
 
    render() {
+      const { list, json, currentUser, userInput } = this.state;
       return(
          <div>
             <header>
                <User 
-                  list={this.state.list}
-                  currentUser={this.state.currentUser}
+                  list={list}
+                  currentUser={currentUser}
                   selectUser={this.selectUser}
                />
                <h1>To Do List</h1>
                <Input 
-                  userInput={this.state.userInput}
+                  userInput={userInput}
                   onChange={this.onChange}
-                  onClick={this.onClick}
+                  onAddBtn={this.onAddBtn}
                   onKeyPress={this.onKeyPress}
                />
             </header>
             <List 
-               list={this.state.list} 
-               onDelete={this.onDelete}
-               toggleDone={this.toggleDone}
-               currentUser={this.state.currentUser}
+               list={list} 
+               json={json}
+               onClick={this.onClick}
+               currentUser={currentUser}
             />
          </div>
       )

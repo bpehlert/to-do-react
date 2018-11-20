@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = ({userInput, onChange, onClick, onKeyPress}) => {
+const Input = ({userInput, onChange, onAddBtn, onKeyPress}) => {
    return (
       <div>
          <input 
@@ -13,7 +13,7 @@ const Input = ({userInput, onChange, onClick, onKeyPress}) => {
          <button 
             id="addBtn"
             type="button" 
-            onClick={onClick}
+            onClick={onAddBtn}
          >Add
          </button>
       </div>

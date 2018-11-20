@@ -2,20 +2,18 @@ import React from 'react';
 import './main.css';
 
 const Item = (props) => {
-   const { userId, id, title, completed, onDelete, toggleDone } = props;
+   const { id, title, completed } = props;
    const doneClass = completed ? 'done' : '';
    let deleteBtnClass = 'deleteBtn'
    return(
       <div className='container'>
           <button
             className={deleteBtnClass}
-            onClick={onDelete}
+            id={id}
          >x</button>
          <li 
-            onClick={toggleDone} 
             className={doneClass}
-            onMouseEnter={(e)=> console.log(e)}
-            onMouseLeave={(e)=> console.log(e)}
+            id={id}
          >{title}</li>
       </div>
    )
